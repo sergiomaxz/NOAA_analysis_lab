@@ -1,5 +1,3 @@
-# FB-11 Max Serheiev Lab 1
-
 import os
 import urllib.request
 from datetime import datetime
