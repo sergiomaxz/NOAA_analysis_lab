@@ -27,9 +27,9 @@ def create_dataframe(filename, fnumb):
 
 
 def index_correction(df):
-    indexes = [0, 22, 24, 23, 25, 3, 4, 8, 19, 20, 21, 9, 26, 10,
+    indexes = [22, 24, 23, 25, 3, 4, 8, 19, 20, 21, 9, 26, 10,
                11, 12, 13, 14, 15, 16, 27, 17, 18, 6, 1, 2, 7, 5]
-    oldIndex = 0
+    oldIndex = 1
     for newIndex in indexes:
         df['area'].replace({oldIndex: newIndex}, inplace=True)
         oldIndex += 1
@@ -98,7 +98,10 @@ if __name__ == '__main__':
     files = os.listdir(path)
     files.pop(0)
     for i in range(0, len(files)):
-        lframes.append(create_dataframe(f'{path}\{files[i]}', i))
+        index = files[i].split('_')
+        index = index[1]
+        index = int(index[2:])
+        lframes.append(create_dataframe(f'{path}\{files[i]}', index))
 
     frame = pd.concat(lframes, axis=0, ignore_index=True)
     frame = index_correction(frame)
