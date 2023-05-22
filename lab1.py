@@ -98,9 +98,7 @@ if __name__ == '__main__':
     files = os.listdir(path)
     files.pop(0)
     for i in range(0, len(files)):
-        index = files[i].split('_')
-        index = index[1]
-        index = int(index[2:])
+        index = int(files[i].split('_')[1][2:])
         lframes.append(create_dataframe(f'{path}\{files[i]}', index))
 
     frame = pd.concat(lframes, axis=0, ignore_index=True)
